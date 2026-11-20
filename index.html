@@ -20,7 +20,7 @@
 		<meta property="og:image:alt" content="Shubham Pandey in San Diego" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css?v=7" />
+		<link rel="stylesheet" href="assets/css/main.css?v=10" />
 	</head>
 	<body class="is-preload">
 
@@ -364,16 +364,56 @@
 			<script src="assets/js/main.js?v=2"></script>
 			<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 			<script>
-				/* Publications: fade each paper in as it scrolls into view */
+				/* TRY-OUT: type "Hi there!" and the intro line like a terminal, then fade in the paragraph */
 				(function () {
-					if (!('IntersectionObserver' in window)) return;
-					document.documentElement.classList.add('pubs-anim');
+					if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+					var h = document.querySelector('#about header.major h2'),
+						p = document.querySelector('#about header.major p'),
+						body = document.querySelector('#about .container > p');
+					if (!h || !p || !body) return;
+					document.documentElement.classList.add('typing-on');
+					var items = [[h, h.textContent, 70], [p, p.textContent, 22]];
+					items.forEach(function (it) { it[0].style.minHeight = it[0].offsetHeight + 'px'; it[0].textContent = ''; });
+					var cursor = document.createElement('span');
+					cursor.className = 'type-cursor';
+					cursor.setAttribute('aria-hidden', 'true');
+					cursor.textContent = '\u258C';
+					var k = 0;
+					function next() {
+						if (k >= items.length) { body.classList.add('typed'); return; }
+						var el = items[k][0], txt = items[k][1], speed = items[k][2], i = 0;
+						(function tick() {
+							el.textContent = txt.slice(0, i);
+							el.appendChild(cursor);
+							if (i++ < txt.length) setTimeout(tick, speed);
+							else { k++; setTimeout(next, 350); }
+						})();
+					}
+					setTimeout(next, 500);
+				})();
+			</script>
+			<script>
+				/* Scroll reveal: papers, section headings, tiles, skills, education and contact fade up into view */
+				(function () {
+					if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+					var groups = ['#main section > .container > h3', '.features.tiles article', 'ul.feature-icons li',
+						'#education .col-3', '.contact > div'];
+					groups.forEach(function (sel) {
+						document.querySelectorAll(sel).forEach(function (el, i) {
+							el.classList.add('reveal');
+							if (sel !== groups[0]) el.style.setProperty('--d', (i % 4) * 90 + 'ms');
+						});
+					});
+					document.documentElement.classList.add('pubs-anim', 'reveal-on');
 					var io = new IntersectionObserver(function (entries) {
 						entries.forEach(function (e) {
-							if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+							if (!e.isIntersecting) return;
+							/* a tile reveals its whole row, so tiles parked off to the side never stay hidden */
+							var row = e.target.closest('.features.tiles');
+							(row ? row.querySelectorAll('.reveal') : [e.target]).forEach(function (el) { el.classList.add('in'); io.unobserve(el); });
 						});
 					}, { threshold: 0.15 });
-					document.querySelectorAll('.pub').forEach(function (el) { io.observe(el); });
+					document.querySelectorAll('.pub, .reveal').forEach(function (el) { io.observe(el); });
 				})();
 			</script>
 			<script>

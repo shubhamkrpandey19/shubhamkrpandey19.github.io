@@ -1,5 +1,5 @@
 @import url("fontawesome-all.min.css");
-@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,400italic,600,700|Source+Code+Pro:400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,400italic,600,700|IBM+Plex+Mono:400,400italic,600,700|Source+Code+Pro:400&display=swap");
 
 /*
 	Read Only by HTML5 UP
@@ -3428,3 +3428,36 @@ ul.feature-icons .tools { display: block; font-size: 0.82em; color: #8a8f91; lin
 }
 /* Keep intended line breaks on phones (template hides them, which glued words: "CompetitionUniversity") */
 .features.tiles h4 br, #header > header p br { display: inline; }
+
+/* Animations (all skipped for visitors who prefer reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+	/* 1. Sections fade up as they scroll into view (classes added by the script in index.html) */
+	.reveal-on .reveal { opacity: 0; transform: translateY(18px);
+		transition: opacity 0.6s ease var(--d, 0ms), transform 0.6s ease var(--d, 0ms); }
+	.reveal-on .reveal.in { opacity: 1; transform: none; }
+
+	/* 2. Intro on page load: text rises in, banner slowly zooms */
+	@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+	@keyframes slow-zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+	#about header.major h2 { animation: rise 0.8s ease 0.15s both; }
+	#about header.major p { animation: rise 0.8s ease 0.35s both; }
+	#about .container > p { animation: rise 0.8s ease 0.55s both; }
+	#about .image.main { overflow: hidden; }
+	#about .image.main img { animation: slow-zoom 8s ease-out both; }
+
+	/* 3. Tiles lift on hover */
+	.features.tiles article .image { transition: translate 0.25s ease, box-shadow 0.25s ease; border-radius: 5px; }
+	.features.tiles article:hover .image { translate: 0 -5px; box-shadow: 0 12px 24px rgba(20, 33, 61, 0.18); }
+}
+
+/* === Command-line look: IBM Plex Mono (delete this block to go back to EB Garamond) === */
+body, input, select, textarea, h1, h2, h3, h4, h5, h6 { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+#wrapper, #header { font-size: 0.86em; }   /* monospace runs wide, so scale it down a little */
+h1, h2, h3, h4 { letter-spacing: -0.02em; }
+/* Typing intro (script in index.html; skipped for reduced motion) */
+.typing-on #about header.major h2, .typing-on #about header.major p { animation: none; }
+.typing-on #about .container > p { animation: none; opacity: 0; transform: translateY(12px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.typing-on #about .container > p.typed { opacity: 1; transform: none; }
+.type-cursor { display: inline-block; margin-left: 0.05em; color: var(--accent); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+/* === end TRY-OUT === */

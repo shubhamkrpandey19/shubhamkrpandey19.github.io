@@ -1,5 +1,5 @@
 @import url("fontawesome-all.min.css");
-@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,400italic,600,700|IBM+Plex+Mono:400,400italic,600,700|Source+Code+Pro:400&display=swap");
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,400italic,600,700|Source+Code+Pro:400&display=swap");
 
 /*
 	Read Only by HTML5 UP
@@ -3450,14 +3450,6 @@ ul.feature-icons .tools { display: block; font-size: 0.82em; color: #8a8f91; lin
 	.features.tiles article:hover .image { translate: 0 -5px; box-shadow: 0 12px 24px rgba(20, 33, 61, 0.18); }
 }
 
-/* === Command-line look: IBM Plex Mono (delete this block to go back to EB Garamond) === */
-body, input, select, textarea, h1, h2, h3, h4, h5, h6 { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
-#wrapper, #header { font-size: 0.86em; }   /* monospace runs wide, so scale it down a little */
-h1, h2, h3, h4 { letter-spacing: -0.02em; }
-/* Typing intro (script in index.html; skipped for reduced motion) */
-.typing-on #about header.major h2, .typing-on #about header.major p { animation: none; }
-.typing-on #about .container > p { animation: none; opacity: 0; transform: translateY(12px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.typing-on #about .container > p.typed { opacity: 1; transform: none; }
-.type-cursor { display: inline-block; margin-left: 0.05em; color: var(--accent); animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-/* === end TRY-OUT === */
+/* "I'm Shubham…" intro line: a bit smaller than the template's 1.75em */
+header.major h2 + p { font-size: 1.4em; }
+@media screen and (max-width: 736px) { header.major h2 + p { font-size: 1.25em; } }

@@ -1,5 +1,5 @@
 @import url("fontawesome-all.min.css");
-@import url("https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic|Source+Code+Pro:400");
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,400italic,600,700|Source+Code+Pro:400&display=swap");
 
 /*
 	Read Only by HTML5 UP
@@ -99,8 +99,8 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #888;
-		font-family: "Lato", sans-serif;
-		font-size: 16pt;
+		font-family: "EB Garamond", Georgia, serif;
+		font-size: 18pt;
 		font-weight: 400;
 		line-height: 1.75em;
 	}
@@ -2877,7 +2877,7 @@ input, select, textarea {
 		/* Basic */
 
 			body, input, select, textarea {
-				font-size: 13pt;
+				font-size: 15pt;
 			}
 
 		/* Header */
@@ -2915,7 +2915,7 @@ input, select, textarea {
 		/* Basic */
 
 			body, input, select, textarea {
-				font-size: 11pt;
+				font-size: 13pt;
 			}
 
 		/* Header */
@@ -2947,7 +2947,7 @@ input, select, textarea {
 			}
 
 			body, input, select, textarea {
-				font-size: 12pt;
+				font-size: 14pt;
 			}
 
 		/* Image */
@@ -3113,7 +3113,7 @@ input, select, textarea {
 		/* Basic */
 
 			body, input, select, textarea {
-				font-size: 12pt;
+				font-size: 14pt;
 			}
 
 			h1 br, h2 br, h3 br, h4 br, h5 br, h6 br {
@@ -3262,7 +3262,7 @@ input, select, textarea {
 			}
 
 			body, input, select, textarea {
-				font-size: 12pt;
+				font-size: 14pt;
 			}
 
 		/* List */
@@ -3312,16 +3312,119 @@ input, select, textarea {
 			.button {
 				padding: 0;
 			}
-									/* Uniform education logo sizes */
-				.education-logo {
-				  max-width: 120px;
-				  max-height: 120px;
-				  width: auto;
-				  height: auto;
-				  object-fit: contain;
-				  display: block;
-				  margin: 0 auto 10px;
-				}
 
 
 	}
+
+/* Site colors: navy + Idaho gold. Change the five values below to re-theme. */
+:root {
+	--side: #14213D;       /* sidebar background (navy) */
+	--side-text: #e6e9f0;  /* sidebar text */
+	--side-line: #26365c;  /* sidebar menu dividers */
+	--accent: #F1B300;     /* Idaho Pride Gold: buttons, icons, active menu */
+	--ink: #8A6700;        /* darker gold, readable on white: links, headings */
+}
+
+body, input, select, textarea { color: #3a4245; }
+h1, h2, h3, h4, h5, h6, strong, b { color: #101618; }
+#header { background: var(--side); color: var(--side-text); }
+#header header p, #header a { color: var(--side-text); }
+#header > nav ul li { border-top-color: var(--side-line); }
+#header > nav ul li a.active { background: var(--accent); color: var(--side) !important; }
+a { border-bottom-color: var(--ink); }
+a:hover { color: var(--ink) !important; }
+header.major h2 { color: #24467F; } /* "Hi there!": lighter shade of the sidebar navy so the blue shows */
+#header > footer .icons li a { color: var(--side-text); }
+#header > footer .icons li a:hover { color: var(--accent) !important; }
+ul.feature-icons li:before, #titleBar .toggle:before { background: var(--accent); color: var(--side); }
+input[type="submit"].primary, .button.primary { background-color: var(--accent); color: var(--side) !important; }
+input[type="submit"].primary:hover, .button.primary:hover { background-color: var(--accent); filter: brightness(1.08); }
+input:focus, select:focus, textarea:focus { border-color: var(--accent) !important; }
+
+/* Publications list: gold bar on hover, fade-up as each paper scrolls into view */
+.pubs { list-style: none; margin: -0.5em 0 2em -1.1em; padding: 0; } /* years line up with the heading */
+.pubs .pub { display: flex; gap: 0.8em; margin: 0; padding: 0.7em 1.1em 0.7em calc(1.1em - 3px); border-left: 3px solid transparent; border-radius: 4px;
+	transition: border-color 0.25s, background-color 0.25s, opacity 0.6s ease var(--d, 0ms), transform 0.6s ease var(--d, 0ms); }
+.pubs .pub:hover { border-left-color: var(--accent); background-color: #faf8f2; }
+.pub-year { flex: none; min-width: 2.2em; font-weight: 600; color: var(--ink); }
+.pub-title { border-bottom: 0; color: #101618; font-weight: 600; line-height: 1.4; }
+.pub-title:hover { color: var(--ink) !important; }
+.pub p { margin: 0.25em 0 0; font-size: 0.88em; line-height: 1.5; }
+.pubs .pub .pub-authors { font-size: 0.78em; color: #8a8f91; }
+.pub-authors b { color: #3a4245; }
+.pub-tag { margin-left: 0.5em; padding: 0.05em 0.5em; border-radius: 3px; background: var(--side); color: #fff; font-size: 0.8em; }
+.pubs-anim .pub { opacity: 0; transform: translateY(18px); }
+.pubs-anim .pub.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+	.pubs-anim .pub { opacity: 1; transform: none; transition: none; }
+}
+@media screen and (max-width: 480px) {
+	.pubs .pub { flex-direction: column; gap: 0.2em; padding: 0.8em 0.6em; }
+}
+#header .side-links { margin-top: 1.25em; font-style: normal; }
+
+/* Tile rows (In the News, Talks & Awards, Teaching): sideways scroll with arrows, equal 4:3 images */
+.tile-row { position: relative; }
+.features.tiles { display: flex; gap: 1.5em; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+	padding-bottom: 0.75em; scrollbar-width: thin; }
+.features.tiles article { flex: 0 0 calc((100% - 3em) / 3); scroll-snap-align: start; margin: 0; padding: 0; border: 0; }
+.features.tiles article .image { display: block; width: 100%; margin: 0 0 1em; padding: 0; border: 0; }
+.features.tiles article .image img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 25%; border-radius: 5px; }
+.features.tiles article .inner { display: block; width: 100%; }
+.features.tiles article h4 { font-size: 1em; line-height: 1.35; margin-bottom: 0.5em; }
+.features.tiles article .inner p { font-size: 0.88em; line-height: 1.55; }
+.tile-row .tile-btn { position: absolute; top: calc((100% - 0.75em) * 0.18); z-index: 2; width: 2.4em; height: 2.4em; padding: 0;
+	border: 0; border-radius: 50%; background: var(--side); color: var(--accent) !important; font-size: 1.1em; line-height: 2.4em;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); cursor: pointer; transition: opacity 0.2s; }
+.tile-row .tile-btn.prev { left: -1.2em; }
+.tile-row .tile-btn.next { right: -1.2em; }
+.tile-row .tile-btn:disabled { opacity: 0; pointer-events: none; }
+.tile-row.fits .tile-btn { display: none; }
+@media screen and (max-width: 1280px) { .features.tiles article { flex-basis: calc((100% - 1.5em) / 2); } }
+@media screen and (max-width: 736px) {
+	.features.tiles article { flex-basis: 85%; }
+	.tile-row .tile-btn { display: none; } /* swipe on phones */
+}
+/* Per-photo crop positions so faces stay in the tile */
+.features.tiles article .image img[src*="IMG-20251123-WA0001"] { object-position: center 60%; } /* 3MT: speaker mid-frame */
+.features.tiles article .image img[src*="1762850425757"] { object-position: center 15%; }       /* MDAnalysis: face near top */
+.features.tiles article .image img[src*="pic001"] { object-fit: contain; background: #fff; }     /* IMCI logo: show whole logo */
+ul.feature-icons .tools { display: block; font-size: 0.82em; color: #8a8f91; line-height: 1.5; }
+/* Education: faint college logo behind each degree */
+#education .edu { position: relative; }
+#education .edu::before { content: ""; position: absolute; inset: 0 0.5em; background: center / contain no-repeat;
+	opacity: 0.12; pointer-events: none; }
+#education .edu p { position: relative; }
+#education .edu-uidaho::before { background-image: url("../../images/uidaho.jpg"); }
+#education .edu-rgpv::before { background-image: url("../../images/rgpv.jpg"); }
+#education .edu-alabama::before { background-image: url("../../images/alabama-a.png"); }
+#education .edu-niper::before { background-image: url("../../images/niper-logo.jpg"); }
+
+/* Compact sidebar so it fits the screen (otherwise it scrolls on its own and the page feels stuck) */
+#header > header { padding: 1.5em 1.5em 1em; }
+#header .image.avatar { width: 5.5em; margin: 0 auto 0.8em; }
+#header > header p { font-size: 0.85em; line-height: 1.5; margin-top: 0.5em; }
+#header .side-links { margin-top: 0.9em; font-size: 1em; }
+#header > nav ul li a { padding: 0.35em 0; font-size: 0.9em; }
+#header > footer { padding: 0.9em 0; }
+#header > header { padding-top: 1.2em; }
+#header .image.avatar { width: 5em; }
+#header > nav ul li a { padding: 0.3em 0; }
+#header > footer { padding: 0.5em 0; }
+@media screen and (max-height: 760px) { /* short laptop windows */
+	#header .image.avatar { width: 4em; margin-bottom: 0.4em; }
+	#header > header p { line-height: 1.35; }
+	#header > nav ul li a { padding: 0.15em 0; }
+}
+/* Contact: details on the left, compact form on the right */
+.contact-info { list-style: none; margin: 0; padding: 0; }
+.contact-info li { margin: 0 0 0.6em; padding: 0; }
+.contact-info li:before { display: inline-block; width: 1.6em; color: var(--ink); }
+.contact textarea { min-height: 0; }
+/* Tile photos: black and white, color on hover (as on the Patel Lab site). Touch screens keep color. */
+@media (hover: hover) {
+	.features.tiles article .image img { filter: grayscale(1); transition: filter 0.4s ease; }
+	.features.tiles article:hover .image img { filter: none; }
+}
+/* Keep intended line breaks on phones (template hides them, which glued words: "CompetitionUniversity") */
+.features.tiles h4 br, #header > header p br { display: inline; }
